@@ -6,7 +6,7 @@
         "node": ">=14 <15"
     },
     "scripts": {
-        "start": "npm run build && npm run prod:install && node ./build/index.js",
+        "start": "npm install && ts-node -r tsconfig-paths/register -r dotenv/config src/index",
         "prod:install": "cp package.json build/package.json && cd build && npm install --production",
         "dev:start": "ts-node -r tsconfig-paths/register -r dotenv/config src/index",
         "dev": "nodemon --config restart.json",
