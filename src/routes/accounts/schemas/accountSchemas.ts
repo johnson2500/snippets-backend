@@ -4,9 +4,11 @@ const Joi = require('joi');
 
 export default {
   postAccountSchema: Joi.object().keys({
-    body: Joi.object().keys({
-      name: Joi.string().required(),
-    }).required(),
+    body: Joi.object()
+      .keys({
+        name: Joi.string().required(),
+      })
+      .required(),
     params: Joi.object().keys({}),
     query: Joi.object().keys({}),
   }),

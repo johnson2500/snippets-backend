@@ -20,7 +20,7 @@ export default class TodoLists extends Projects {
     return this.getFullProjectRef().collection(this.listsCollectionName).doc(this.todoListId);
   }
 
-  async addTodoList(data: ITodoList): Promise<FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData>>  {
+  async addTodoList(data: ITodoList): Promise<FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData>> {
     return this.getTodoListRef().add(data);
   }
 
@@ -29,15 +29,16 @@ export default class TodoLists extends Projects {
   }
 
   async getTodoLists(): Promise<ITodoList[]> {
-    const todoListsSnapshot: FirebaseFirestore.QuerySnapshot<FirebaseFirestore.DocumentData> = await this.getTodoListRef().get();
+    const todoListsSnapshot: FirebaseFirestore.QuerySnapshot<FirebaseFirestore.DocumentData> =
+      await this.getTodoListRef().get();
 
     const todoLists = [];
     todoListsSnapshot.forEach((todoListObj: FirebaseFirestore.DocumentData) => {
       const currentTodoList: ITodoList = {
         id: todoListObj.id,
         parentId: todoListObj.ref.parent.parent.id,
-        ...todoListObj.data()
-      }
+        ...todoListObj.data(),
+      };
 
       todoLists.push(currentTodoList);
     });

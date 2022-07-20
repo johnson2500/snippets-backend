@@ -1,5 +1,5 @@
 import Projects from '../../../models/Projects/projects';
-import express, { Request} from 'express'
+import express, { Request } from 'express';
 
 export default async (req: Request, res: express.Response): Promise<void> => {
   const { ownerId, body } = req;

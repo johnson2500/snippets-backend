@@ -1,6 +1,6 @@
 import Account from '../../../models/Accounts/accounts';
 import reponseTransformer from '../../../helpers/reponseTransformer';
-import { Request, Response} from 'express'
+import { Request, Response } from 'express';
 
 export default async (req: Request, res: Response): Promise<void> => {
   const { ownerId, body } = req;

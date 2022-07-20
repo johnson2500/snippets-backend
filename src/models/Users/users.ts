@@ -5,7 +5,7 @@ import { IUser } from './userTypes';
 export default class Users extends BaseModel {
   ownerId: string;
   usersCollectionName: string;
-  usersRef: FirebaseFirestore.CollectionReference
+  usersRef: FirebaseFirestore.CollectionReference;
 
   constructor(ownerId: string = null) {
     super();

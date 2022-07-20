@@ -1,4 +1,4 @@
-import { ITodoListItem } from "../TodoListItems/todoListItemTypes";
+import { ITodoListItem } from '../TodoListItems/todoListItemTypes';
 
 export interface ITodoList {
   id?: string;

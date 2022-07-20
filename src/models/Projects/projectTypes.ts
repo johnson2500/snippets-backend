@@ -1,7 +1,7 @@
-import { ITodoList } from "../TodoLists/todoListTypes";
+import { ITodoList } from '../TodoLists/todoListTypes';
 
 export interface IProject {
-  id?: string
+  id?: string;
   ownerId?: string;
   name: string;
   todoLists: ITodoList[];

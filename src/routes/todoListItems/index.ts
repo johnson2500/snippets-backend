@@ -8,19 +8,15 @@ export default (app): void => {
   app.get(
     '/project/:projectId/todo-list/:todoListId/todo-list-item/:id',
     validator(taskSchemas.getTodoItemSchema),
-    getTodoListItem,
+    getTodoListItem
   );
 
   app.post(
     '/project/:projectId/todo-list/:todoListId/todo-list-item',
     validator(taskSchemas.postTodoListItemSchema),
-    addTodoListItem,
+    addTodoListItem
   );
 
   // Get All Todos And List
-  app.get(
-    '/project/:projectId/todo-list/:todoListId/items',
-    validator(taskSchemas.getTodosSchema),
-    getTodos,
-  );
+  app.get('/project/:projectId/todo-list/:todoListId/items', validator(taskSchemas.getTodosSchema), getTodos);
 };

@@ -1,7 +1,7 @@
-import {logger} from '@config/logger'
-import { Request, Response} from 'express';
-import { Users } from '@server/models';
-import reponseTransformer from '@server/helpers/reponseTransformer';
+import { logger } from '../../../config/logger';
+import { Request, Response } from 'express';
+import { Users } from '../../../models';
+import reponseTransformer from '../../../helpers/reponseTransformer';
 
 export default async (req: Request, res: Response): Promise<void> => {
   try {
@@ -10,9 +10,9 @@ export default async (req: Request, res: Response): Promise<void> => {
 
     logger.info({ message: 'Initializing User' });
 
-    const userWriteResult: FirebaseFirestore.WriteResult = await user.addUser(body)
+    const userWriteResult: FirebaseFirestore.WriteResult = await user.addUser(body);
 
-    res.send(reponseTransformer(req, {...body, userWriteResult }));
+    res.send(reponseTransformer(req, { ...body, userWriteResult }));
   } catch (error: any) {
     logger.error(error);
 

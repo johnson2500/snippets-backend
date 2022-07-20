@@ -1,5 +1,5 @@
 import { getFirestore } from 'firebase-admin/firestore';
-import { IProject } from './projectTypes'
+import { IProject } from './projectTypes';
 import Account from '../Accounts/accounts';
 
 export default class Projects extends Account {
@@ -8,7 +8,7 @@ export default class Projects extends Account {
   projectCollectionName: string;
   projectRef: FirebaseFirestore.CollectionReference;
 
-  constructor(ownerId: string, projectId:string = null) {
+  constructor(ownerId: string, projectId: string = null) {
     super(ownerId);
     this.projectId = projectId;
     this.projectCollectionName = 'projects';
@@ -24,7 +24,9 @@ export default class Projects extends Account {
   }
 
   // TODO type
-  async addProject(data: Partial<IProject>): Promise<FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData>> {
+  async addProject(
+    data: Partial<IProject>
+  ): Promise<FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData>> {
     return this.getProjectRef().add(data);
   }
 
@@ -34,15 +36,16 @@ export default class Projects extends Account {
 
   async getProjects(): Promise<IProject[]> {
     const projectsSnapshot: FirebaseFirestore.DocumentData = await this.getAccountRef()
-      .collection(this.projectCollectionName).get();
+      .collection(this.projectCollectionName)
+      .get();
 
     const projects: IProject[] = [];
 
     projectsSnapshot.forEach((projectDoc: FirebaseFirestore.DocumentData) => {
       const currentProject: IProject = {
         id: projectDoc.id,
-        ...projectDoc.data()
-      }
+        ...projectDoc.data(),
+      };
       projects.push(currentProject);
     });
 

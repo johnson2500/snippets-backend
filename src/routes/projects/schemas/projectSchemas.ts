@@ -12,9 +12,11 @@ export default {
   }),
   getProjectSchema: Joi.object().keys({
     body: Joi.object().keys({}),
-    params: Joi.object().keys({
-      projectId: Joi.string().required(),
-    }).required(),
+    params: Joi.object()
+      .keys({
+        projectId: Joi.string().required(),
+      })
+      .required(),
     query: Joi.object().keys({}),
   }),
   getProjectsSchema: Joi.object().keys({

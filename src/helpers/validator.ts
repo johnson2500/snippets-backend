@@ -1,5 +1,5 @@
-import Joi from "joi";
-import { IValidationObj } from "@server/types";
+import Joi from 'joi';
+import { IValidationObj } from '../types';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default (schema: Joi.AnySchema) => (req, res, next) => {

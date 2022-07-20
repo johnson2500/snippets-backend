@@ -1,11 +1,13 @@
 import Project from '../../../models/Projects/projects';
 import reponseTransformer from '../../../helpers/reponseTransformer';
 
-import express, { Request } from 'express'
+import express, { Request } from 'express';
 
 export default async (req: Request, res: express.Response): Promise<void> => {
-
-  const { ownerId, params: { projectId } } = req;
+  const {
+    ownerId,
+    params: { projectId },
+  } = req;
 
   const project = new Project(ownerId, projectId);
 

@@ -10,8 +10,7 @@ export default {
     params: Joi.object().keys({
       projectId: Joi.string().required(),
     }),
-    query: Joi.object().keys({
-    }),
+    query: Joi.object().keys({}),
   }),
   getTodoSchema: Joi.object().keys({
     body: Joi.object().keys({}),
@@ -25,7 +24,7 @@ export default {
     body: Joi.object().keys({}),
     params: Joi.object().keys({
       todoListId: Joi.string().required(),
-      projectId: Joi.string().required()
+      projectId: Joi.string().required(),
     }),
     query: Joi.object().keys({}),
   }),

@@ -3,8 +3,7 @@ import Accounts from '../../../models/Accounts/accounts';
 import Projects from '../../../models/Projects/projects';
 import TodoLists from '../../../models/TodoLists/todoLists';
 import TodoItems from '../../../models/TodoListItems/todoListItems';
-import { Request, Response} from 'express'
-
+import { Request, Response } from 'express';
 
 export default async (req: Request, res: Response): Promise<void> => {
   const { ownerId } = req;
@@ -19,14 +18,13 @@ export default async (req: Request, res: Response): Promise<void> => {
   projectsData.forEach((projectObj) => {
     const projectId = projectObj.id;
     const todoList = new TodoLists(ownerId, projectId);
-    todoListsPromises.push(todoList.getTodoLists()); 
+    todoListsPromises.push(todoList.getTodoLists());
   });
 
   const todoListsData = await Promise.all(todoListsPromises);
   const parsedProjectData = [];
   projectsData.forEach((projectObj) => {
-    const todoLists = todoListsData
-      .filter((todoListObj) => todoListObj[0]?.parentId === projectObj.id);
+    const todoLists = todoListsData.filter((todoListObj) => todoListObj[0]?.parentId === projectObj.id);
     parsedProjectData.push({
       ...projectObj,
       todoLists: todoLists[0],
@@ -51,8 +49,7 @@ export default async (req: Request, res: Response): Promise<void> => {
     todoLists.forEach((todoListObj) => {
       const todoListItemsParsed = [];
       const { id: todoListId } = todoListObj;
-      const todoListsFilterd = todoListItemsData.map((item) => item[0])
-        .filter((item) => item?.parentId === todoListId);
+      const todoListsFilterd = todoListItemsData.map((item) => item[0]).filter((item) => item?.parentId === todoListId);
       todoListItemsParsed.push(todoListsFilterd);
 
       finalParsedProjects.push({
@@ -65,7 +62,7 @@ export default async (req: Request, res: Response): Promise<void> => {
     });
     finalParsedProjects.push({
       ...projectObj,
-      todoLists: { },
+      todoLists: {},
     });
   });
 

@@ -1,12 +1,12 @@
 import TodoLists from '../TodoLists/todoLists';
-import { ITodoListItem } from './todoListItemTypes'
+import { ITodoListItem } from './todoListItemTypes';
 
 export default class TodoItems extends TodoLists {
   ownerId: string;
   todoListItemId: string;
   todoListItemsCollectionName: string;
 
-  constructor(ownerId: string, projectId:string, todoListId:string, todoListItemId: string = null) {
+  constructor(ownerId: string, projectId: string, todoListId: string, todoListItemId: string = null) {
     super(ownerId, projectId, todoListId);
     this.todoListItemId = todoListItemId;
     this.todoListItemsCollectionName = 'todoListItems';
@@ -16,15 +16,14 @@ export default class TodoItems extends TodoLists {
     return this.getFullTodoListRef().collection(this.todoListItemsCollectionName);
   }
 
-  async addTodoListItem(data: ITodoListItem): Promise<FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData>> {
-    return this.getFullTodoListItemRef()
-      .add(data);
+  async addTodoListItem(
+    data: ITodoListItem
+  ): Promise<FirebaseFirestore.DocumentReference<FirebaseFirestore.DocumentData>> {
+    return this.getFullTodoListItemRef().add(data);
   }
 
-  async getTodoListItem(): Promise<FirebaseFirestore.DocumentData>  {
-    return this.getFullTodoListItemRef()
-      .doc(this.todoListItemId)
-      .get();
+  async getTodoListItem(): Promise<FirebaseFirestore.DocumentData> {
+    return this.getFullTodoListItemRef().doc(this.todoListItemId).get();
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

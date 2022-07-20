@@ -1,11 +1,3 @@
-import * as moduleAlias from 'module-alias';
-const sourcePath = process.env.NODE_ENV === 'development' ? 'src' : __dirname;
-moduleAlias.addAliases({
-  '@server': sourcePath,
-  '@config': `${sourcePath}/config`,
-  '@domain': `${sourcePath}/domain`,
-});
-
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import authentication from './helpers/authentication';
@@ -14,7 +6,7 @@ import { AddressInfo } from 'net';
 import http from 'http';
 import './firebase/index';
 import routes from './routes';
-import './types/expressExtensions'
+import './types/expressExtensions';
 import { logger } from './config/logger';
 
 const host = process.env.HOST || '0.0.0.0';
@@ -27,19 +19,15 @@ async function startServer() {
   app.use(bodyParser.json());
   app.use(authentication);
 
-  routes(app)
+  routes(app);
 
-  app.get(
-    '/health', (_, res) => {
-      res.send('Hello World')
-    }
-  )
+  app.get('/health', (_, res) => {
+    res.send('Hello World');
+  });
 
   const server = http.createServer(app).listen({ host, port }, () => {
     const addressInfo = server.address() as AddressInfo;
-    logger.info(
-      `Server ready at http://${addressInfo.address}:${addressInfo.port}`,
-    );
+    logger.info(`Server ready at http://${addressInfo.address}:${addressInfo.port}`);
   });
 
   const signalTraps: NodeJS.Signals[] = ['SIGTERM', 'SIGINT', 'SIGUSR2'];

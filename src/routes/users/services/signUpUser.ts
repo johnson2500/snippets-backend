@@ -2,8 +2,8 @@ import Project from '../../../models/Projects/projects';
 import TodoList from '../../../models/TodoLists/todoLists';
 import TodoItem from '../../../models/TodoListItems/todoListItems';
 import reponseTransformer from '../../../helpers/reponseTransformer';
-import { logger } from '@server/config/logger';
-import { Request, Response} from 'express';
+import { logger } from '../../../config/logger';
+import { Request, Response } from 'express';
 
 const defaults = {
   projectName: 'Default Project',
@@ -35,7 +35,7 @@ export default async (req: Request, res: Response): Promise<void> => {
     logger.info({ message: 'Initializing Todo List Item' });
 
     const todoListItem = new TodoItem(ownerId, projectId, todoListId);
-    const todoListItemData = await todoListItem.addTodoListItem({ ...defaults.todoListItemData, ownerId});
+    const todoListItemData = await todoListItem.addTodoListItem({ ...defaults.todoListItemData, ownerId });
     const todoListItemId = todoListItemData.id;
 
     const responseObj = {
