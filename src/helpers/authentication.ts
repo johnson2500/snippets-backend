@@ -4,6 +4,8 @@ const exceptions = new Set([
   '/user-name/exists',
   'user/session-login',
   '/test',
+  '/health',
+  'health',
 ]);
 
 
